@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-back/entity"
-	"go-back/router"
+	"feemanage-go-back/entity"
+	"feemanage-go-back/router"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,14 +13,15 @@ func main() {
 	db := dbInit()
 
 	// dbをmigrateします
-	db.AutoMigrate(&entity.Article{})
+	db.AutoMigrate(&entity.User{})
 	router.GetRouter(db)
 
 }
 
 func dbInit() *gorm.DB {
+	// dsn := fmt.Sprintf("%s%s", s1, s2)
 
-	dsn := "host=localhost user=bloguser password=bloguser dbname=blog port=15432 sslmode=disable TimeZone=Asia/Tokyo"
+	dsn := "host=localhost user=feemanageuser password=feemanageuser dbname=feemanagedb port=15432 sslmode=disable TimeZone=Asia/Tokyo"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

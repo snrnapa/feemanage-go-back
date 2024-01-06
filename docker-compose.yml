@@ -5,9 +5,9 @@ services:
     image: postgres:10
     container_name: "db"
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
+      POSTGRES_USER: feemanageuser
+      POSTGRES_PASSWORD: feemanageuser
+      POSTGRES_DB: feemanagedb
     ports:
       - "15432:5432"
     volumes:
