@@ -1,17 +1,31 @@
 package main
 
 import (
-	"net/http"
+	"go-back/entity"
+	"go-back/router"
 
-	"github.com/gin-gonic/gin"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func main() {
-	engine := gin.Default()
-	engine.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "hello world",
-		})
-	})
-	engine.Run(":3000")
+	// dbを作成します
+	db := dbInit()
+
+	// dbをmigrateします
+	db.AutoMigrate(&entity.Article{})
+	router.GetRouter(db)
+
+}
+
+func dbInit() *gorm.DB {
+
+	dsn := "host=localhost user=bloguser password=bloguser dbname=blog port=15432 sslmode=disable TimeZone=Asia/Tokyo"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+	if err != nil {
+		panic("failed to connect database")
+	}
+
+	return db
 }
