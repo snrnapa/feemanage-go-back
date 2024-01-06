@@ -14,13 +14,20 @@ func GetRouter(dbConn *gorm.DB) {
 	userHandler := controller.UserController{
 		Db: dbConn,
 	}
+	deptHandler := controller.DeptController{
+		Db: dbConn,
+	}
+	teamHandler := controller.TeamController{
+		Db: dbConn,
+	}
 
 	r := gin.Default()
 	// crosOriginの設定を適用する
 	setCors(r)
 
-	r.GET("/users", userHandler.ShowAllUser)
-	// r.GET("/show/:id", ShowOneBlog)
+	r.GET("/user", userHandler.ShowAllUser)
+	r.GET("/dept/:id", deptHandler.GetDept)
+	r.GET("/team/:id", teamHandler.GetTeam)
 	r.Run(":9001")
 
 }

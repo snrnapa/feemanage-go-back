@@ -1,4 +1,4 @@
--- m_worker初期データ
+-- users初期データ
 insert into
     users(id, last_name, first_name, dept_id, team_id)
 select
@@ -7,6 +7,26 @@ select
     format('らすとねーむ%s', i),
     round((random() * (1 - 5)) :: numeric, 0) + 5,
     round((random() * (1 - 2)) :: numeric, 0) + 2
+from
+    generate_series(1, 1000) as i;
+
+-- teams初期データ
+insert into
+    teams(team_id, team_name, reader_id)
+select
+    i,
+    format('チームネーム%s', i),
+    i
+from
+    generate_series(1, 1000) as i;
+
+-- depts初期データ
+insert into
+    depts(dept_id, dept_name, reader_id)
+select
+    i,
+    format('チームネーム%s', i),
+    i
 from
     generate_series(1, 1000) as i;
 
