@@ -1,3 +1,15 @@
+-- m_worker初期データ
+insert into
+    users(id, last_name, first_name, dept_id, team_id)
+select
+    i,
+    format('ふぁーすとねーむ%s', i),
+    format('らすとねーむ%s', i),
+    round((random() * (1 - 5)) :: numeric, 0) + 5,
+    round((random() * (1 - 2)) :: numeric, 0) + 2
+from
+    generate_series(1, 1000) as i;
+
 -- -- gormで定義する可能性が高いためコメントアウト
 -- -- m_dept初期データ
 -- insert into
@@ -61,17 +73,6 @@
 --     m_team (dept_id, seq, team_name)
 -- Values
 --     (5, 2, 'YZM');
--- -- m_worker初期データ
--- insert into
---     m_worker(id, first_name, last_name, dept_id, team_id)
--- select
---     i,
---     format('ふぁーすとねーむ%s', i),
---     format('らすとねーむ%s', i),
---     round((random() * (1 - 5)) :: numeric, 0) + 5,
---     round((random() * (1 - 2)) :: numeric, 0) + 2
--- from
---     generate_series(1, 1000) as i;
 -- -- t_fee初期データ
 -- insert into
 --     t_fee(id, fee_seq, round_trip, fee, use_date)

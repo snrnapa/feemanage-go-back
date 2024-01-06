@@ -5,13 +5,13 @@
 ### MVCモデル + service + repository（採用）
 まずgoの書き方を理解しないとね。。。
 
-https://zenn.dev/ajapa/articles/65b9934db18396
+https://zenn.dev/ajapa/users/65b9934db18396
 
 ### クリーンarchitectureに挑戦してみようと思います、、、、しんどいかも、、？（見送り）
 
 ![](クリーンアーキテクチャ.png)
 
-https://zenn.dev/castingone_dev/articles/77ecac84226521
+https://zenn.dev/castingone_dev/users/77ecac84226521
 
 
 ここのサイトわかりやすいかも

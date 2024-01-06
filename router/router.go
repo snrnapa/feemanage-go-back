@@ -11,20 +11,21 @@ import (
 
 func GetRouter(dbConn *gorm.DB) {
 
-	articleHandler := controller.ArticleHandler{
+	userHandler := controller.UserController{
 		Db: dbConn,
 	}
 
 	r := gin.Default()
+	// crosOriginの設定を適用する
 	setCors(r)
 
-	// r.LoadHTMLGlob("view/*html")
-	r.GET("/articles", articleHandler.ShowAllArticle)
+	r.GET("/users", userHandler.ShowAllUser)
 	// r.GET("/show/:id", ShowOneBlog)
 	r.Run(":9001")
 
 }
 
+// フロントエンドからのcrosOriginの許可設定
 func setCors(r *gin.Engine) {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
