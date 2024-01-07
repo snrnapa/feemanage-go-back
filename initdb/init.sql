@@ -61,20 +61,14 @@ insert into
     )
 select
     i,
-    CAST(
-        date '2023-11-10' + '1 day' :: INTERVAL * d AS date
-    ),
+    d,
     n,
     round((random() * (1 - 3)) :: numeric, 0) + 3,
-    CAST(
-        date '2023-11-10' + '1 day' :: INTERVAL * d AS date
-    ),
-    CAST(
-        date '2023-11-10' + '1 day' :: INTERVAL * d AS date
-    ),
+    d + cast('9 hour' AS interval) + cast(n || 'hour' AS interval),
+    d + cast('10 hour' AS interval) + cast(n || 'hour' AS interval),
     round((random() * (0 - 1)) :: numeric, 0) + 1,
     round((random() * (1000 - 1100)) :: numeric, 0) + 1100
 from
-    generate_series(1, 1000) as i,
-    generate_series(1, 8) as n,
-    generate_series(1, 200) as d;
+    generate_series(1, 400) as i,
+    generate_series('2023-10-1', '2024-2-3', '1 day' :: interval) as d,
+    generate_series(1, 8) as n;
