@@ -72,3 +72,19 @@ from
     generate_series(1, 400) as i,
     generate_series('2023-10-1', '2024-2-3', '1 day' :: interval) as d,
     generate_series(1, 8) as n;
+
+-- projects初期データ
+insert into
+    projects(
+        proj_id,
+        proj_name,
+        customer_id,
+        leader_id
+    )
+select
+    i,
+    format('プロジェクト%s', i),
+    round((random() * (1 - 10)) :: numeric, 0) + 10,
+    round((random() * (1 - 400)) :: numeric, 0) + 400
+from
+    generate_series(1000, 1100) as i;
