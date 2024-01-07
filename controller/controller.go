@@ -27,7 +27,7 @@ type DeptController struct {
 }
 
 func (d *DeptController) GetDept(c *gin.Context) {
-	dept_id, err := strconv.Atoi(c.Param("id"))
+	dept_id, err := strconv.Atoi(c.Query("id"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,7 +44,7 @@ type TeamController struct {
 }
 
 func (t *TeamController) GetTeam(c *gin.Context) {
-	team_id, err := strconv.Atoi(c.Param("id"))
+	team_id, err := strconv.Atoi(c.Query("id"))
 	if err != nil {
 		log.Fatal(err)
 	}
