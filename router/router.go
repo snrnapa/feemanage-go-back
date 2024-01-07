@@ -18,6 +18,9 @@ func GetRouter(dbConn *gorm.DB) {
 	teamHandler := controller.TeamController{
 		Db: dbConn,
 	}
+	feeHandler := controller.FeeController{
+		Db: dbConn,
+	}
 
 	r := gin.Default()
 	// crosOriginの設定を適用する
@@ -26,6 +29,8 @@ func GetRouter(dbConn *gorm.DB) {
 	r.GET("/user", userHandler.ShowAllUser)
 	r.GET("/dept/", deptHandler.GetDept)
 	r.GET("/team/", teamHandler.GetTeam)
+	r.GET("/fee/", feeHandler.GetFee)
+
 	r.Run(":9001")
 
 }

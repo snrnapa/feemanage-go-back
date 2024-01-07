@@ -30,6 +30,23 @@ select
 from
     generate_series(1, 1000) as i;
 
+-- fees初期データ
+insert into
+    fees(user_id, seq, date, departure, arraival, price)
+select
+    i,
+    n,
+    CAST(
+        date '2023-11-10' + '1 day' :: INTERVAL * d AS date
+    ),
+    round((random() * (1 - 100)) :: numeric, 0) + 100,
+    round((random() * (1 - 100)) :: numeric, 0) + 100,
+    round((random() * (140 - 2000)) :: numeric, 0) + 2000
+from
+    generate_series(1, 1000) as i,
+    generate_series(1, 2) as n,
+    generate_series(1, 200) as d;
+
 -- -- gormで定義する可能性が高いためコメントアウト
 -- -- m_dept初期データ
 -- insert into
@@ -93,18 +110,3 @@ from
 --     m_team (dept_id, seq, team_name)
 -- Values
 --     (5, 2, 'YZM');
--- -- t_fee初期データ
--- insert into
---     t_fee(id, fee_seq, round_trip, fee, use_date)
--- select
---     i,
---     n,
---     round((random() * (1 - 2)) :: numeric, 0) + 2,
---     round((random() * (140 - 2000)) :: numeric, 0) + 2000,
---     CAST(
---         date '2023-11-10' + '1 day' :: INTERVAL * d AS date
---     )
--- from
---     generate_series(1, 1000) as i,
---     generate_series(1, 2) as n,
---     generate_series(1, 200) as d;
