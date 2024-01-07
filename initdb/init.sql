@@ -88,3 +88,17 @@ select
     round((random() * (1 - 400)) :: numeric, 0) + 400
 from
     generate_series(1000, 1100) as i;
+
+-- customers初期データ
+insert into
+    customers(
+        customer_id,
+        customer_name,
+        customer_info
+    )
+select
+    i,
+    format('カスタマーネーム%s', i),
+    format('カスタマー情報%s', i)
+from
+    generate_series(1000, 1100) as i;
