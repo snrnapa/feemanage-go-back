@@ -13,7 +13,7 @@ func main() {
 	db := dbInit()
 
 	// dbをmigrateします
-	db.AutoMigrate(&entity.User{}, &entity.Dept{}, &entity.Team{}, &entity.Fee{})
+	db.AutoMigrate(&entity.User{}, &entity.Dept{}, &entity.Team{}, &entity.Fee{}, &entity.Customer{}, &entity.Project{}, &entity.Report{})
 	router.GetRouter(db)
 
 }

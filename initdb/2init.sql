@@ -12,7 +12,7 @@ from
 
 -- teams初期データ
 insert into
-    teams(team_id, team_name, reader_id)
+    teams(team_id, team_name, leader_id)
 select
     i,
     format('チームネーム%s', i),
@@ -22,7 +22,7 @@ from
 
 -- depts初期データ
 insert into
-    depts(dept_id, dept_name, reader_id)
+    depts(dept_id, dept_name, leader_id)
 select
     i,
     format('チームネーム%s', i),

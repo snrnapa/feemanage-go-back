@@ -72,3 +72,19 @@ func (t *FeeController) GetFee(c *gin.Context) {
 	c.JSON(http.StatusOK, Fee)
 
 }
+
+type ReportController struct {
+	Db *gorm.DB
+}
+
+func (t *ReportController) GetReport(c *gin.Context) {
+	UserId, err := strconv.Atoi(c.Query("user_id"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	var Report []entity.Report
+	t.Db.Where("User_id = ?", UserId).
+		Find(&Report)
+	c.JSON(http.StatusOK, Report)
+
+}
