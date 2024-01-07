@@ -48,7 +48,6 @@ func (t *TeamController) GetTeam(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("team_id出力します")
 	fmt.Println(team_id)
 	var team []entity.Team
 	t.Db.Where("team_id = ?", team_id).
@@ -66,10 +65,10 @@ func (t *FeeController) GetFee(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var Fee []entity.Fee
+	var fee []entity.Fee
 	t.Db.Where("User_id = ?", UserId).
-		Find(&Fee)
-	c.JSON(http.StatusOK, Fee)
+		Find(&fee)
+	c.JSON(http.StatusOK, fee)
 
 }
 
@@ -79,12 +78,48 @@ type ReportController struct {
 
 func (t *ReportController) GetReport(c *gin.Context) {
 	UserId, err := strconv.Atoi(c.Query("user_id"))
+	Date, err := strconv.Atoi(c.Query("date"))
+	Seq, err := strconv.Atoi(c.Query("seq"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	var Report []entity.Report
+	var report []entity.Report
 	t.Db.Where("User_id = ?", UserId).
-		Find(&Report)
-	c.JSON(http.StatusOK, Report)
+		Where("date = ?", Date).
+		Where("seq = ?", Seq).
+		Find(&report)
+	c.JSON(http.StatusOK, report)
+
+}
+
+type ProjectController struct {
+	Db *gorm.DB
+}
+
+func (t *ProjectController) GetProject(c *gin.Context) {
+	proj_id, err := strconv.Atoi(c.Query("proj_id"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	var project []entity.Project
+	t.Db.Where("proj_id = ?", proj_id).
+		Find(&project)
+	c.JSON(http.StatusOK, project)
+
+}
+
+type CustomerController struct {
+	Db *gorm.DB
+}
+
+func (t *CustomerController) GetCustomer(c *gin.Context) {
+	customer_id, err := strconv.Atoi(c.Query("customer_id"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	var customer []entity.Customer
+	t.Db.Where("customer_id = ?", customer_id).
+		Find(&customer)
+	c.JSON(http.StatusOK, customer)
 
 }
