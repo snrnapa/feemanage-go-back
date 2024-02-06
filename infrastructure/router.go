@@ -27,9 +27,9 @@ func GetRouter(dbConn *gorm.DB) {
 	setCors(r)
 
 	r.GET("/user", userHandler.ShowAllUser)
-	r.GET("/dept/", deptHandler.GetDept)
-	r.GET("/team/", teamHandler.GetTeam)
-	r.GET("/fee/", feeHandler.GetFee)
+	r.GET("/dept", deptHandler.GetDept)
+	r.GET("/team", teamHandler.GetTeam)
+	r.GET("/fee", feeHandler.GetFee)
 
 	r.Run(":9001")
 
