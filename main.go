@@ -2,7 +2,7 @@ package main
 
 import (
 	"feemanage-go-back/entity"
-	"feemanage-go-back/router"
+	"feemanage-go-back/infrastructure"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,7 +14,7 @@ func main() {
 
 	// dbをmigrateします
 	db.AutoMigrate(&entity.User{}, &entity.Dept{}, &entity.Team{}, &entity.Fee{}, &entity.Customer{}, &entity.Project{}, &entity.Report{})
-	router.GetRouter(db)
+	infrastructure.GetRouter(db)
 
 }
 

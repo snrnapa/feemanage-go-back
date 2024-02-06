@@ -1,7 +1,7 @@
-package router
+package infrastructure
 
 import (
-	"feemanage-go-back/controller"
+	"feemanage-go-back/adapter/controller"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
